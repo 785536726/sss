@@ -1,0 +1,219 @@
+﻿jQuery的特点：读写合一，隐式遍历，链式调用，大型的JS函数库
+jq的入口函数：$(function(){...});
+js的入口函数：window.onload(){...};
+    js和jq 入口函数的区别：
+     1.加载顺序
+    window.onload页面中的内容包括视频、图片、音频加载完毕后，再加载
+    $(function(){}) 当Dom结构加载完毕后  就执行
+
+    2.是否有简写
+    window.onload==》无简写
+
+    3.出现的位置
+    window.onload===》可以出现再所有适应JS的环境中
+    $(function(){})===》只能出现在 有JQ文件的环境中
+
+    4.出现次数
+    window.onload===>只能写一个
+    $(function(){})===》可以写多个
+
+    5.兼容
+    window.onload===》适应所有支持JS脚本的浏览器
+    $(function(){})===》自动处理Ajax的兼容
+
+***************************************************************************
+
+
+jQuery为什么可以实现链式调用？
+    再一个方法执行后，return this，再将该对象折返回来，使函数执行后 重新指向该对象
+
+***************************************************************************
+
+只有jQuery的函数才能使用jQuery的方法，jQuery的函数执行过后返回的就是jquery的对象;
+
+jq的核心函数：（$/jQuery）;
+    jquery库向外直接暴露的就是$/jQuery，引入jq库后直接使用$即可
+    当函数用：$(XXX);
+        (1).参数为函数：当DOM加载完成后，执行此回调函数
+        (2).参数为选择器字符串：查找所有匹配的标签，并将它们封装成JQ对象
+        (3).参数为DOM对象：将DOM对象封装成JQ对象
+        (4).参数为HTML标签字符串；创建标签对象并封装成JQ对象
+    作为对象使用：$.xxx();即$的方法
+==============================================
+        (1)$.each():遍历数组或对象中的数据;
+        (2)$.trim():去除两边的空格；
+            var str="   my name is lvv   "
+            console.log(str)
+            console.log($.trim(str))
+        (3)$.type(obj):得到数据的类型
+        (4)$.isArray(obj):判断是否是数组
+        (5)$.isFunction(obj):判断是否是函数	
+            is()  ===>判断JQ对象  时候满足条件
+
+            :hidden     :visibility
+***************************************************************************
+
+jq的核心对象，即jQuery对象;
+    基本行为：
+        (1)*size()/length:  包含的DOM元素个数
+        (2)*[inedx]/get(index):  得到对应位置的DOM元素
+        (3)*each():  遍历包含的所有DOM元素
+        (4)*index():  得到在所在元素的下标
+
+***************************************************************************
+
+jq选择器：
+
+基本选择器
+        1.选择id为div1的元素  #div1
+        2.选择所有div元素      div
+        3.选择所有class属性为box的元素   .box
+        4.选择所有的div和span元素   div,span
+        5.选择所有class属性为box的div元素  div.box
+层次选择器
+        1、ancestor descendant
+        在给定的祖先元素下匹配所有的后代元素   .box div
+        2、parent>child
+        在给定的父元素下匹配所有的子元素   
+        3、prev+next
+        匹配所有进阶在prev元素后的next元素  
+        4、prev~sibling
+        匹配prev元素之后所有siblings元素  
+过滤选择器
+        1、：first  第一个   $("p:first")
+        2、：last  最后一个
+        3、：not(#select) 除了ID为select的 $("p:not(#select)")
+        4、：even  基数
+        5、：odd  偶数
+        6、：eq(1)  第二个    $("div:eq()")
+        7、：gt()  索引大于
+        8、：lt()  索引小于
+        9、：header 标题标签   h1：header
+        10、：focus  页面开始就被激活的input标签
+表单选择器
+        1、：text  文本框
+        2、：disabled不可用的   :text:disabled
+        3、：checkbox 复选框
+        4、：checked 已被选择的复选框
+        5、：selected  已被选择的selected
+
+***************************************************************************
+
+JQ 操作属性
+        1.操作属性
+        attr是处理我们自定义的dom属性，相当于将属性清空后重新赋值。
+        removeAttr()
+        prop() 处理html元素本身就自带的固有属性，(prop  通常用来处理以布尔值为结果的 属性)
+        removeProp()
+        2.操作class属性
+        addClass()
+        removeClass()
+        toggleClass()
+        hasClass()
+
+        3.操作html代码/文本/值
+        html()   ==> innerHTML
+        val()    ==> value
+        text()   ==>innerText
+
+***************************************************************************
+
+jQ 的过滤
+        1.first()  
+        2.last()
+        3.eq()     
+        4.filter() 
+             $("input").filter([title="aaa"])
+             $("input").filter([class="ipt"])
+        5.not()
+            $("input").not([title="aaa"])
+            $("input").not([class="ipt"])
+        6.has()	
+            $('div').has("span")
+
+JQ 的查找  (都能体现出JQ的  隐式遍历特点)
+        1.children():子标签中找
+        2.find():后代标签中找
+        3.parent():父标签
+        4.prevAll():前面所有的兄弟标签
+            prev()
+        5.nextAll():后面所有的兄弟标签
+            next()
+        6.siblings():前后所有的兄弟标签
+
+
+***************************************************************************
+
+jq对文档的操作：
+    1.插入：
+        内部插入：
+            append/appendTo==>尾部插入
+            prepend/prependTo==>头部插入
+        外部插入：
+            尾部插入
+            $('parent').after('son');
+            $('son').insertafter($('parent'));
+            头部插入
+            $('parent').before('son');
+            $('son').insertbefore($('parent'));
+    2.包裹：
+        wrap() :在每个匹配元素外包裹
+            $('obj').wrap('<b></b>')
+        unwrap() 
+            $('obj').unwrap()
+        wrapAll() ：在所有匹配元素外统一包裹
+        wrapInner() 
+    3.替换：
+        replaceWith() 
+            $("ul .li1").replaceWith("<s>我是被替换的<s>")
+        replaceAll() 
+            $("<s>我也是被替换的<s>").replaceAll("ul li")
+    4.删除
+        empty()    remove()     detach()
+        $("ul").empty()   ==>清空元素
+        remove   在删除元素时  会将元素的事件一并删除
+        detach   在删除元素时  会保留元素的事件
+    5.克隆
+        clone   
+            当传入参数 true的时候，会将元素的事件一并克隆
+            $("ul li").click(function(){
+                var li=$(this).clone(true)
+                li.appendTo($("ul"))
+            })
+
+***************************************************************************
+
+自定义动画：
+        $('obj').animate({'属性'：zhi},time,callback())
+         show()  hide()  toggle()
+         slideDown() slideUp() slideToggle()
+======================================
+        stop(stopAll,gotoEnd)
+            stopAll:
+                为false时，不停止所有加入队列的动画,仅停止当前的动画。
+                为true时，停止所有加入队列的动画。
+            gotoEnd:
+                为false时，不允许直接跳到当前动画的最终效果
+                为true时，允许直接跳到完成当前动画的最终末尾效果
+
+***************************************************************************
+
+获取/设置标签的坐标数据
+		1.offset():相对页面左上角的坐标
+		2.position():相对于父元素左上角的坐标
+        3.scrollTop
+            offset可以赋值，position不可以赋值
+            
+***************************************************************************
+
+获取jq元素的大小：
+        1.内容尺寸
+            height():height
+                console.log($box.height())       
+            width():width
+        2.内部尺寸
+            innerHeight():height+padding
+            innerWidth():width+padding
+        3.外部尺寸
+            outerHeight(false/true):height+padding+border,如果是true，加上margin
+            outerWidth(false/true):width+padding+border,如果是true，加上margin

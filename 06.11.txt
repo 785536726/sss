@@ -1,0 +1,48 @@
+箭头函数的this指向与父级所在的环境有关()=>{}
+settimeout中的this永远指向window，settimeout是window下的属性，类似alert，console.log
+自由函数：
+面向对象：变量==属性；函数==方法（这个方法属于谁，this指向谁）
+map()===>一定要有返回值，返回值构成一个新的数组，并且原数组不变。
+var ewArr = arr.map(function(item,index,arr){
+	return
+})
+flilter筛选：返回值构成一个新数组，原数组不变；
+some()：遍历数组中的每一个元素，数组中得元素只要有一个满足条件的，则返回true；
+every()：遍历数组，只有数组中得元素全部满足条件时，返回true；
+reduce():
+append()
+prepend()
+appendTo()尾部插入
+prependTo()头部插入
+after()外部插入尾部
+before()外部插入头部
+insertAfter()
+insertBefore()
+
+remove()
+detach()【保留被删除元素的事件】
+clone()
+wrap()将一匹配的元素用wrap（）规定的元素包裹起来
+unWrap()
+wrapAll()
+wrapInner()
+
+
+replaceWith()
+replaceAll()
+
+offset（）相对于页面左上角的坐标
+position()相对于父元素左上角的坐标
+offset()和position()返回两个值===>top left
+offset()可以赋值[offset赋值不能加px]，position()不可以赋值
+
+scrollTop()滚动条的位置，可以赋值（jQuery的读写合一）
+
+function getStyle(obj,attr){
+	if(obj.currentStyle){
+		return obj.currentStyle[attr]
+	}else{
+		return getComputedStyle(obj,false)[attr]
+	}	
+}
+

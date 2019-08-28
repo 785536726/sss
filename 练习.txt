@@ -1,0 +1,119 @@
+alert("hello");
+confirm("welcome");
+prompt("这是一个输入框")；
+console.log("在控制台输入")；
+console.error("错误信息");
+console.warn(" 警告信息")；
+document.write("页面上直接输出")；
+三种输出方式：alert console document.write；
+获取元素的三种方式：
+1，document.getElementById("id");
+2,  document.getElementsByTagname("tagname")[下标]；
+3，document.getElementsByClassname("classname")[下标]；
+输出当前节点文本内容
+console.log(x.innerHTML);
+inner HTML：输出当前节点文本内容，连同子元素及子元素节点标签一同输出。
+innertext：输出当前节点及子元素节点文本内容。
+outerHTML：输出当前节点标签文本内容，连同子元素文本内容及子元素节点标签。
+outerTEXT：（同innerTEXT） 输出当前节点文本内容，内部子元素内容连同一块输出。
+通过获取元素改变元素的css属性：
+var x = document.getElementsByClassname("class")[0];
+object.style.property="value";
+x.style.class="red";
+x.style.fontsize="15px";
+通过改变class名改变css属性：
+（css属性分为样式属性和元素属性）
+x.clsssName = "aaa";
+//x.interHTML="通过innerhtml改变元素标签内内容"；//
+页面数据加载完毕后执行
+window.onload=function(){
+alert（"页面数据加载完毕"）
+}
+命名方式：（避免数字开头）
+匈牙利，下划线，大驼峰（每个单词首字母大写），小驼峰（第一个单词首字母小写，其余首字母大写）
+============================================================二
+数据类型：①简单数据：数字number 字符串string 布尔值boolean 空null 未定义undefined
+	 ②复杂数据：对象object{键:值,键:值,键:值}
+获取对象属性值1：myName=student.name；2:  myName=student["name"]
+		     数组arrey[a,b,c,d,e,f,g.........]
+获取数组值：array[下标]。数组内数值类型随意，数值不限。
+字符串拼接：+.
+数据类型转换：①显示转换（强制类型转换）
+		1：字符串转数字。----
+	parseInt()取整，第一位不是数字返回NAN
+	parseFloat(),  第一位不是数字返回NaN，遇到第二个先个小数点或者遇到非数字时结束
+	Number()，包含非数字即返回NaN
+		2：转字符串。---
+	tostring(),null和undefined不可用。
+	String(),  可用于null及undefined。
+		3：转布尔值。
+	Boolean（），只要引号里有占位就会转换为true；引号里没有占位或是null及0时为false
+	       ②隐式类型转换（利用js弱变量类型转换）
+		1：使用减乘除，取余及比较运算符时，默认使用Number()将字符串转化为数字
+		2：使用加法运算会将数字看成字符串进行拼接。
+		前提：是数字与字符串混合的运算。
+数值操作:  1，parseInt只截取整数，丢弃小数部分；
+	2，Math.ceil向上取整；
+	3，Math.floor向下取整；
+	4，Math.round四舍五入；
+	5，Math.abs绝对值；
+	6，Math.max  Math.min返回两者中较大（小）值；
+		Math.max(a,b);
+	7,Math.random返回（0-1）之间的随机数；
+	isNaN用于判断是否是数字
+null和undefined：    在if语句中都会被自动转化为false，相等运算符会报告
+		console.log(null==undefind);为true。
+		但在转化为数值时Number(null)=0;Number(undefined)=NaN。
+==对象==
+Javascript中所有事物都是对象：字符串，数值，数组，函数。。。。。。。。
+当函数被保存为一个对象的属性时，他可称为这个对象的方法
+var x = {
+info:"hello",
+speak:function(){
+alert("hello")
+}}访问对象方法：object.methodname();           console.log(x.speak());
+==创建对象==
+	1：声明时添加；var x = {name:132,...........}
+	2:   声明后添加；var x = {}；x.name="!#@";console.log(x)
+	3:   通过Object原生构造函数：var x = new Object(); x.name="!@#";........
+====================================================================================运算符========================
+按优先级
+	1：特殊运算符：.   []   new   ()  
+	2:  算术运算符：       ①自增自减：++   --
+			②乘，除，取余：
+			3 加，减
+	3：比较运算符：       ①>   <   >=   <=  
+			② ==   ===   !==   !===
+  	4：逻辑运算符：&&   ||   !
+	5：赋值运算符：=   *=   /=   +=   -=
+	(三元(条件)运算符：condition？代码1：代码2；condition为true时执行代码1，false执行2)
+Js流程控制：
+	1：顺序控制：即代码自上而下依次执行。
+	2：分支控制：          Ⅰ：单路分支 if(){......};
+			Ⅱ：双路分支 if(){...}else{....};
+			三：多分支    if(){...}else if(){....}else......
+			Ⅳ：嵌套分支 if(){if().....}else{.....}
+			五：switch分支
+			switch(n){
+			       case 1:
+				执行代码块1
+				break；
+			       case 2:
+				执行代码块2
+				break；
+			       default：与case1和case2不同时执行
+			}
+	3：流程控制：          ①：for语句;for(循环初始值；循环条件；变量的变化){//需要执行的代				码块}；符合条件时首先执行for循环中的代码块，再去对循环变量进行			更新；
+			嵌套循环：for(){for(){.....}......};
+			for循环遍历数组：var array=["#@$","#%$R","%^#$"];  for(var i 				= 0);i <=array.length;i++){console.log(array[i]);}
+			②：for in循环,遍历对象属性:每次遍历时将对象的键依次赋给形式变量
+\			var x = {key1:value,key2:value};for(i in x){document.write(x[i])}
+			三：while（条件）{//代码块}；  必须记得增加条件中所用变量的值，			不然会导致浏览器崩溃
+			④：do while：do{//需要执行的代码块}  while(条件)
+			无论是否满足条件，先执行一次代码
+			##：break和continue：
+			break终止循环，使用break后其所在的循环体已结束；
+			continue用于跳跃循环中的迭代，如果出现了指定的条件，跳跃省略本				次循环然后继续循环中的下一次迭代，continue所在的循环体并没有结			束；
+=========================================================
+
+
